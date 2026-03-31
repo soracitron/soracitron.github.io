@@ -1,15 +1,568 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier Sora Citron: 工房　空枸櫞</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>工房 空枸櫞｜アトリエソラシトロン</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      color: #333;
+      background: linear-gradient(180deg, #fffdf6 0%, #fff7dd 35%, #f7fbff 100%);
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      color: #777;
+      margin-bottom: 4px;
+    }
+
+    .brand-main {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .nav {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: #555;
+      flex-wrap: wrap;
+    }
+
+    .nav a:hover,
+    .button:hover,
+    .button-outline:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 84px 0 96px;
+    }
+
+    .hero-bg-bubble {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .bubble-1 {
+      width: 180px;
+      height: 180px;
+      top: 50px;
+      left: -30px;
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .bubble-2 {
+      width: 260px;
+      height: 260px;
+      top: 90px;
+      right: 0;
+      background: rgba(255, 236, 171, 0.8);
+    }
+
+    .bubble-3 {
+      width: 240px;
+      height: 240px;
+      bottom: -20px;
+      left: 32%;
+      background: rgba(197, 232, 255, 0.75);
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: #666;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.2;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #666;
+      max-width: 620px;
+      margin-top: 24px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button,
+    .button-outline {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 18px;
+      transition: 0.2s ease;
+    }
+
+    .button {
+      background: #222;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .button-outline {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid #d5d5d5;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 32px;
+      padding: 30px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card h2,
+    .section-title {
+      margin: 10px 0 0;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.3;
+    }
+
+    .card-label,
+    .section-label {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: #777;
+    }
+
+    .mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    .mini-card .icon {
+      font-size: 34px;
+    }
+
+    .mini-card h3 {
+      margin: 14px 0 8px;
+      font-size: 22px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-head p {
+      color: #666;
+      margin-top: 18px;
+    }
+
+    .three-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(220, 220, 220, 0.9);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+
+    .works-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .work-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid #e2e2e2;
+      border-radius: 22px;
+      padding: 16px 18px;
+    }
+
+    .work-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .concept-box {
+      background: #fff;
+      border: 1px solid #e4e4e4;
+      border-radius: 36px;
+      padding: 40px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 28px;
+    }
+
+    .contact-box {
+      background: #232323;
+      color: #fff;
+      border-radius: 36px;
+      padding: 42px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .contact-box p {
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 760px;
+    }
+
+    .contact-box .button-outline {
+      border-color: rgba(255, 255, 255, 0.25);
+      background: transparent;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .contact-box .button {
+      background: #fff;
+      color: #222;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 0;
+      color: #666;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .works-grid,
+      .three-grid,
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 64px 0 72px;
+      }
+
+      .contact-box,
+      .concept-box,
+      .hero-card,
+      .panel,
+      .mini-card {
+        padding: 24px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <h1>Atelier Sora Citron: 工房　空枸櫞</h1>
-    Web　ページ準備中
-</body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <div class="brand-sub">ATELIER</div>
+        <div class="brand-main">工房 空枸櫞 <span style="font-size: 16px; font-weight: 500; color: #777;">｜ アトリエソラシトロン</span></div>
+      </div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#works">Works</a>
+        <a href="#concept">Concept</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
+  <main>
+    <section class="hero">
+      <div class="hero-bg-bubble bubble-1"></div>
+      <div class="hero-bg-bubble bubble-2"></div>
+      <div class="hero-bg-bubble bubble-3"></div>
+
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">MUSIC · ARCHITECTURE · ART · WOODWORK</div>
+          <h1>光と響きが<br />やわらかく出会う場所。</h1>
+          <p>
+            工房 空枸櫞（アトリエソラシトロン）は、音楽・建築・アート・木工を横断しながら、明るくひらかれた表現と、心地よい空間づくりを探る工房です。
+          </p>
+          <div class="button-row">
+            <a class="button" href="#contact">お問い合わせ</a>
+            <a class="button-outline" href="#works">活動を見る</a>
+            <a class="button-outline" href="https://tabino-garage-hachioji.example.com" target="_blank" rel="noopener noreferrer">旅のガレージ八王子</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="hero-card">
+            <div class="card-label">CONCEPT</div>
+            <h2>空・光・風・水の気配を、表現の中へ。</h2>
+            <p>
+              晴れやかな昼のイメージ、自然のやわらかな動き、そして人と人との共鳴。
+              そんな感覚を、音や場や作品の中に編みこんでいきます。
+            </p>
+          </div>
+
+          <div class="mini-cards">
+            <div class="mini-card">
+              <div class="icon">☀️</div>
+              <h3>Bright</h3>
+              <p>昼の光を思わせる、明るく親しみのある表現。</p>
+            </div>
+            <div class="mini-card">
+              <div class="icon">🎻</div>
+              <h3>Resonance</h3>
+              <p>音の重なり、心の響き合い、空間との共鳴。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">ABOUT</div>
+          <h2 class="section-title">アトリエソラシトロンについて</h2>
+          <p>
+            「空枸櫞」という名には、空のひらかれた明るさと、枸櫞（くえん／シトロン）のやわらかな彩りを重ねています。工房 空枸櫞では、音楽・建築・アート・木工を別々のものとしてではなく、ひとつの感性の流れとして結び、新しい表現や交流の場をつくることを目指しています。
+          </p>
+        </div>
+
+        <div class="three-grid">
+          <article class="panel">
+            <h3>音楽</h3>
+            <p>演奏、アンサンブル、録音、映像制作まで。音を育て、響きを届ける活動を行います。</p>
+          </article>
+          <article class="panel">
+            <h3>建築・空間</h3>
+            <p>光、風、水、空の気配を大切にしながら、場の美しさと居心地を考えます。</p>
+          </article>
+          <article class="panel">
+            <h3>アート・木工</h3>
+            <p>日々の感性を形にし、作品や企画、木の手仕事を通して人と人をつなぎます。</p>
+          </article>
+        </div>
+
+        <div style="margin-top: 24px;" class="panel">
+          <h3>多摩産材を活かした木工</h3>
+          <p>
+            工房 空枸櫞では、多摩産材を活用した木工系の事業も紹介していきます。
+            地域の木の魅力を生かしながら、家具・什器・小物・空間のしつらえなど、
+            暮らしに寄り添う木の仕事を丁寧に形にしていくことを目指しています。
+          </p>
+          <p>
+            素材の背景や手ざわり、経年変化の美しさも大切にし、音楽や空間づくりと響き合う、
+            あたたかく実用的なものづくりを行います。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="container works-grid">
+        <div class="panel">
+          <div class="section-label">WORKS</div>
+          <h2 class="section-title">活動内容</h2>
+          <div class="works-list">
+            <div class="work-item"><div class="work-number">01</div><div>演奏会・小編成アンサンブル</div></div>
+            <div class="work-item"><div class="work-number">02</div><div>録音・動画制作・配信</div></div>
+            <div class="work-item"><div class="work-number">03</div><div>空間づくり・企画制作</div></div>
+            <div class="work-item"><div class="work-number">04</div><div>多摩産材を活かした木工・什器制作</div></div>
+            <div class="work-item"><div class="work-number">05</div><div>ワークショップ・コミュニティ活動</div></div>
+            <div class="work-item"><div class="work-number">06</div><div>旅のガレージ八王子との連携企画</div></div>
+          </div>
+        </div>
+            <div class="work-item"><div class="work-number">02</div><div>録音・動画制作・配信</div></div>
+            <div class="work-item"><div class="work-number">03</div><div>空間づくり・企画制作</div></div>
+            <div class="work-item"><div class="work-number">04</div><div>ワークショップ・コミュニティ活動</div></div>
+          </div>
+        </div>
+
+        <div class="panel" style="background: linear-gradient(180deg, #fffefb 0%, #fff9e8 100%);">
+          <div class="section-label">MESSAGE</div>
+          <p style="font-size: 20px; color: #555;">
+            ひとつのジャンルに閉じないからこそ、思いがけない出会いが生まれる。
+            そんな“ひらかれたアトリエ”でありたいと考えています。
+          </p>
+          <div style="margin-top: 28px; border-radius: 22px; background: rgba(255,255,255,0.8); padding: 20px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); color: #666;">
+            ここには、演奏する人、つくる人、撮る人、考える人が集まり、
+            それぞれの専門や感性を持ち寄って、新しい景色を描いていきます。木や音や空間がゆるやかにつながる場として、地域との関わりも大切にしています。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="concept">
+      <div class="container">
+        <div class="concept-box">
+          <div class="section-label">CONCEPT</div>
+          <h2 class="section-title">共鳴する場をつくる</h2>
+          <div class="concept-grid">
+            <div>
+              <h3>01. ひらかれた空気</h3>
+              <p>誰かだけのためではなく、訪れた人それぞれが自然に入ってこられる場を目指します。</p>
+            </div>
+            <div>
+              <h3>02. 美しさと実用</h3>
+              <p>見た目の美しさだけでなく、実際に集い、活動し、続いていくための心地よさを大切にします。</p>
+            </div>
+            <div>
+              <h3>03. 日常に芸術を</h3>
+              <p>特別な舞台だけでなく、日々の暮らしの中にも音楽やアートの喜びを届けていきます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div class="section-label" style="color: rgba(255,255,255,0.6);">CONTACT</div>
+          <h2 class="section-title">ご相談・お問い合わせ</h2>
+          <p>
+            演奏、企画、空間づくり、制作協力など、さまざまなご相談を歓迎しています。
+            ご連絡先やSNSへのリンク、問い合わせフォームなどをここに掲載できます。
+          </p>
+          <div class="button-row">
+            <a class="button" href="mailto:info@example.com">メールで連絡する</a>
+            <a class="button-outline" href="#">Instagram</a>
+            <a class="button-outline" href="https://tabino-garage-hachioji.example.com" target="_blank" rel="noopener noreferrer">旅のガレージ八王子を見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 工房 空枸櫞 / Atelier Soracitron</div>
+      <div>空と響き、光と彩りのアトリエ</div>
+    </div>
+  </footer>
+</body>
 </html>
