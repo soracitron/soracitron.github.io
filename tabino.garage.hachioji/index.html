@@ -8,6 +8,7 @@
       name="description"
       content="東京の西で、旅の途中に少しだけ世界が広がる場所。ガレージ、屋上、そして里山へ。泊まるだけでは終わらない、小さな体験の拠点をつくっています。"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
       :root {
         --bg: #f6f2ea;
@@ -26,14 +27,14 @@
       * {
         box-sizing: border-box;
       }
-
       html {
         scroll-behavior: smooth;
       }
 
       body {
         margin: 0;
-        font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+        font-family: 'Inter', sans-serif;
+        color: #2c2c2c;
         color: var(--text);
         background:
           radial-gradient(circle at top left, rgba(182, 139, 90, 0.12), transparent 28%),
@@ -50,6 +51,10 @@
       img {
         max-width: 100%;
         display: block;
+      }
+      h1, h2, h3 {
+        font-family: 'Noto Serif JP', serif;
+        letter-spacing: 0.05em;
       }
 
       .container {
