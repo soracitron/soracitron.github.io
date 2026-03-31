@@ -8,39 +8,44 @@
       name="description"
       content="東京の西で、旅の途中に少しだけ世界が広がる場所。ガレージ、屋上、そして里山へ。泊まるだけでは終わらない、小さな体験の拠点をつくっています。"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
       :root {
-        --bg: #f6f2ea;
-        --paper: #fffdf8;
-        --text: #2f2a24;
-        --muted: #6f6559;
-        --line: #ddd1c3;
-        --accent: #6b7a52;
-        --accent-dark: #4f5d3c;
-        --warm: #b68b5a;
-        --shadow: 0 18px 40px rgba(47, 42, 36, 0.08);
-        --radius: 22px;
+        --bg: #f2efe8;
+        --bg-deep: #e7e1d7;
+        --paper: rgba(255, 252, 247, 0.72);
+        --paper-strong: rgba(255, 252, 247, 0.84);
+        --text: #2e2b27;
+        --muted: #6b6258;
+        --line: rgba(152, 139, 122, 0.22);
+        --accent: #5e6f61;
+        --accent-dark: #445246;
+        --accent-soft: rgba(94, 111, 97, 0.12);
+        --warm: #b69461;
+        --warm-soft: rgba(182, 148, 97, 0.14);
+        --shadow: 0 20px 50px rgba(40, 34, 28, 0.10);
+        --shadow-soft: 0 12px 30px rgba(40, 34, 28, 0.06);
+        --radius: 24px;
         --max: 1120px;
       }
 
       * {
         box-sizing: border-box;
       }
+
       html {
         scroll-behavior: smooth;
       }
 
       body {
         margin: 0;
-        font-family: 'Inter', sans-serif;
-        color: #2c2c2c;
+        font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
         color: var(--text);
         background:
-          radial-gradient(circle at top left, rgba(182, 139, 90, 0.12), transparent 28%),
-          radial-gradient(circle at top right, rgba(107, 122, 82, 0.14), transparent 24%),
-          var(--bg);
-        line-height: 1.8;
+          radial-gradient(circle at top left, rgba(182, 148, 97, 0.14), transparent 26%),
+          radial-gradient(circle at top right, rgba(94, 111, 97, 0.16), transparent 24%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+        line-height: 1.85;
+        letter-spacing: 0.01em;
       }
 
       a {
@@ -52,10 +57,6 @@
         max-width: 100%;
         display: block;
       }
-      h1, h2, h3 {
-        font-family: 'Noto Serif JP', serif;
-        letter-spacing: 0.05em;
-      }
 
       .container {
         width: min(calc(100% - 32px), var(--max));
@@ -66,9 +67,10 @@
         position: sticky;
         top: 0;
         z-index: 20;
-        backdrop-filter: blur(12px);
-        background: rgba(246, 242, 234, 0.78);
-        border-bottom: 1px solid rgba(221, 209, 195, 0.9);
+        backdrop-filter: blur(18px) saturate(120%);
+        -webkit-backdrop-filter: blur(18px) saturate(120%);
+        background: rgba(248, 244, 237, 0.58);
+        border-bottom: 1px solid rgba(152, 139, 122, 0.18);
       }
 
       .header-inner {
@@ -156,276 +158,32 @@
       }
 
       .hero-floating {
-        background: rgba(255, 253, 248, 0.88);
-        backdrop-filter: blur(8px);
+        background: rgba(255, 251, 245, 0.46);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow: 0 24px 70px rgba(24, 22, 20, 0.18);
+        backdrop-filter: blur(22px) saturate(130%);
+        -webkit-backdrop-filter: blur(22px) saturate(130%);
       }
 
       .hero-panel {
-        background: rgba(255, 253, 248, 0.86);
-        backdrop-filter: blur(8px);
+        background: rgba(255, 251, 245, 0.42);
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        box-shadow: 0 18px 46px rgba(24, 22, 20, 0.12);
+        backdrop-filter: blur(18px) saturate(125%);
+        -webkit-backdrop-filter: blur(18px) saturate(125%);
       }
 
       .hero-card,
       .panel,
       .quote,
       .footer-card {
-        background: var(--paper);
-        border: 1px solid rgba(221, 209, 195, 0.9);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-      }
-
-      .hero-card {
-        padding: 48px;
-      }
-
-      .eyebrow {
-        display: inline-block;
-        margin-bottom: 16px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(107, 122, 82, 0.1);
-        color: var(--accent-dark);
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-      }
-
-      h1,
-      h2,
-      h3 {
-        margin: 0;
-        line-height: 1.25;
-      }
-
-      h1 {
-        font-size: clamp(2.2rem, 5vw, 4.2rem);
-        letter-spacing: 0.03em;
-      }
-
-      .hero-card p.lead {
-        margin: 24px 0 0;
-        font-size: 1.1rem;
-        color: var(--muted);
-        max-width: 42rem;
-      }
-
-      .hero-actions {
-        margin-top: 32px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 48px;
-        padding: 0 18px;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        font-weight: 700;
-        transition: 0.2s ease;
-      }
-
-      .button.primary {
-        background: var(--accent-dark);
-        color: #fff;
-      }
-
-      .button.primary:hover {
-        background: #425032;
-      }
-
-      .button.secondary {
-        border-color: var(--line);
-        color: var(--text);
-        background: #fff;
-      }
-
-      .button.secondary:hover {
-        border-color: var(--accent);
-        color: var(--accent-dark);
-      }
-
-      .hero-side {
-        display: grid;
-        gap: 20px;
-      }
-
-      .panel {
-        padding: 28px;
-      }
-
-      .status {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 700;
-        color: var(--accent-dark);
-      }
-
-      .status-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 0 8px rgba(107, 122, 82, 0.12);
-      }
-
-      .mini-list {
-        margin: 18px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .mini-list li {
-        padding: 10px 0;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-      }
-
-      section {
-        padding: 28px 0;
-      }
-
-      .section-head {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: end;
-        margin-bottom: 22px;
-      }
-
-      .section-head p {
-        margin: 0;
-        max-width: 44rem;
-        color: var(--muted);
-      }
-
-      .cards-3,
-      .cards-2 {
-        display: grid;
-        gap: 22px;
-      }
-
-      .cards-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .cards-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .card {
-        background: rgba(255, 253, 248, 0.86);
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: 28px;
-      }
-
-      .card .num {
-        display: inline-flex;
-        width: 34px;
-        height: 34px;
-        border-radius: 999px;
-        align-items: center;
-        justify-content: center;
-        background: rgba(182, 139, 90, 0.15);
-        color: var(--warm);
-        font-weight: 700;
-        margin-bottom: 14px;
-      }
-
-      .card p,
-      .card li {
-        color: var(--muted);
-      }
-
-      .card ul {
-        margin: 14px 0 0;
-        padding-left: 1.1rem;
-      }
-
-      .quote {
-        padding: 34px;
-        margin-top: 18px;
-      }
-
-      .quote p {
-        margin: 0;
-        font-size: clamp(1.15rem, 2.4vw, 1.6rem);
-      }
-
-      .quote small {
-        display: block;
-        margin-top: 10px;
-        color: var(--muted);
-      }
-
-      .audience-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .tag {
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 999px;
-        padding: 8px 12px;
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
-
-      .brand-box {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 20px;
-      }
-
-      .brand-item {
-        background: var(--paper);
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: 28px;
-      }
-
-      .brand-item .label {
-        display: inline-block;
-        margin-bottom: 12px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: rgba(107, 122, 82, 0.1);
-        color: var(--accent-dark);
-        font-weight: 700;
-        font-size: 0.8rem;
-      }
-
-      .cta {
-        padding: 34px;
-        background: linear-gradient(135deg, rgba(107, 122, 82, 0.14), rgba(182, 139, 90, 0.1));
-        border: 1px solid var(--line);
-        border-radius: 24px;
-      }
-
-      .cta p {
-        color: var(--muted);
-        margin: 12px 0 0;
-      }
-
-      .site-footer {
-        padding: 28px 0 64px;
-      }
-
-      .footer-card {
         padding: 24px 28px;
         display: flex;
         justify-content: space-between;
         gap: 18px;
         align-items: center;
+        background: rgba(255, 252, 247, 0.52);
+        border: 1px solid var(--line);
       }
 
       .footer-card p {
