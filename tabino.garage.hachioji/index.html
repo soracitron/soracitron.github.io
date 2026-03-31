@@ -110,14 +110,54 @@
       }
 
       .hero {
-        padding: 72px 0 40px;
+        position: relative;
+        padding: 84px 0 48px;
+        overflow: hidden;
+        min-height: 78vh;
+        display: flex;
+        align-items: center;
       }
 
       .hero-grid {
+        position: relative;
+        z-index: 3;
         display: grid;
         grid-template-columns: 1.2fr 0.8fr;
         gap: 28px;
         align-items: stretch;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: opacity 0.8s ease;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(90deg, rgba(24, 22, 20, 0.66) 0%, rgba(24, 22, 20, 0.38) 38%, rgba(24, 22, 20, 0.24) 100%),
+          linear-gradient(180deg, rgba(24, 22, 20, 0.20) 0%, rgba(24, 22, 20, 0.40) 100%);
+      }
+
+      .hero-floating {
+        background: rgba(255, 253, 248, 0.88);
+        backdrop-filter: blur(8px);
+      }
+
+      .hero-panel {
+        background: rgba(255, 253, 248, 0.86);
+        backdrop-filter: blur(8px);
       }
 
       .hero-card,
@@ -450,18 +490,57 @@
     </header>
 
     <main id="top">
-<section class="hero" style="
-  background-image: url('images/PXL_20250622_100132711.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 120px 20px;
-">
-  <div style="background: rgba(0,0,0,0.4); padding:40px; border-radius:20px;">
-    <h1>わざわざ行きたくなる、東京の端のガレージ。</h1>
-    <p>旅の途中に、少しだけ世界が広がる場所。</p>
-  </div>
-</section>
+      <section class="hero" id="hero">
+        <div class="hero-bg">
+          <img
+            id="heroImage"
+            src="images/PXL_20250622_100132711.jpg"
+            alt="旅のガレージ八王子のガレージ空間"
+          />
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-grid">
+          <div class="hero-card hero-floating">
+            <span class="eyebrow">Destination Guesthouse in West Tokyo</span>
+            <h1>わざわざ行きたくなる、東京の端のガレージ。</h1>
+            <p class="lead">
+              旅の途中に、少しだけ世界が広がる場所。
+              ガレージ、屋上、そして里山へ。泊まるだけでは終わらない、
+              音と自然と余韻のある時間を少しずつ準備しています。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#about">この場所を知る</a>
+              <a class="button secondary" href="#news">準備状況を見る</a>
+            </div>
+          </div>
+
+          <div class="hero-side">
+            <aside class="panel hero-panel">
+              <div class="status">
+                <span class="status-dot"></span>
+                <span>現在、開業準備中です</span>
+              </div>
+              <ul class="mini-list">
+                <li>広い屋内ガレージを活かした静かな体験づくり</li>
+                <li>屋上ジャグジーを含む滞在空間の整備</li>
+                <li>里山や竹とつながる「冒険ガレージ」の準備</li>
+              </ul>
+            </aside>
+
+            <aside class="panel hero-panel">
+              <h3>この宿のキーワード</h3>
+              <div class="audience-tags">
+                <span class="tag">車で向かう宿</span>
+                <span class="tag">ガレージ空間</span>
+                <span class="tag">屋上の余韻</span>
+                <span class="tag">静かな音</span>
+                <span class="tag">竹と里山</span>
+                <span class="tag">小さな冒険</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
 
       <section id="about">
         <div class="container">
@@ -662,5 +741,34 @@
         </div>
       </div>
     </footer>
+      <script>
+      const heroImages = [
+        {
+          src: "images/PXL_20250622_100132711.jpg",
+          alt: "旅のガレージ八王子のガレージ空間"
+        },
+        {
+          src: "images/PXL_20260301_051940481.jpg",
+          alt: "旅のガレージ八王子の屋上空間"
+        },
+        {
+          src: "images/PXL_20250726_103543840.LONG_EXPOSURE-02.ORIGINAL.jpg",
+          alt: "竹林の風景"
+        }
+      ];
+
+      const heroImage = document.getElementById("heroImage");
+      let heroIndex = 0;
+
+      setInterval(() => {
+        heroImage.style.opacity = "0";
+        setTimeout(() => {
+          heroIndex = (heroIndex + 1) % heroImages.length;
+          heroImage.src = heroImages[heroIndex].src;
+          heroImage.alt = heroImages[heroIndex].alt;
+          heroImage.style.opacity = "1";
+        }, 400);
+      }, 5000);
+    </script>
   </body>
 </html>
